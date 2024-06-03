@@ -1,0 +1,59 @@
+<div>
+  <p-dropdown
+    [options]="catsBreeds"
+    [(ngModel)]="selectedCat"
+    optionLabel="name"
+    placeholder="Select a cat Breeds"
+    (onChange)="searchDropdown($event.value)"
+  />
+</div>
+<div class="flex flex-col w-full my-4">
+  <input
+    type="text"
+    pInputText
+    placeholder="Search"
+    class="w-full h-10 border-2 border-sky-100"
+    (keyup.enter)="search($event)"
+  />
+</div>
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="grid grid-cols-3 gap-4 my-4">
+  <div *ngFor="let item of catsData">
+    <p-card [header]="item.breeds[0].name" [subheader]="item.breeds[0].origin">
+      <ng-template pTemplate="header">
+        <img
+          alt="Card"
+          [src]="item.url"
+          [width]="item.width"
+          [height]="item.height"
+        />
+      </ng-template>
+      <p>{{ item.breeds[0].description }}...</p>
+      <ng-template pTemplate="footer">
+        <div class="flex gap-3 mt-1">
+          <p-button
+            pButton
+            pRipple
+            label="Detalle"
+            class="w-full"
+            styleClass="w-full"
+            (onClick)="showDetail(item)"
+          />
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+
+<div class="flex flex-row-reverse gap-2" *ngIf="catsData.length > 0">
+  <p-button
+    pButton
+    pRipple
+    label="Ver más.."
+    severity="success"
+    [disabled]="noMoreData"
+    (onClick)="loadMore()"
+  >
+  </p-button>
+</div>

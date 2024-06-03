@@ -1,0 +1,25 @@
+<div class="card">
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <p-avatar
+        image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        styleClass="mr-2" size="xlarge" shape="circle" />
+    </ng-template>
+    <ng-template pTemplate="item" let-item let-root="root">
+      <a pRipple class="flex align-items-center p-menuitem-link" [routerLink]="item.route">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+        <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />
+        <span *ngIf="item.shortcut" class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{{
+          item.shortcut }}</span>
+        <i *ngIf="item.items" [ngClass]="['pi', root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto']"></i>
+      </a>
+    </ng-template>
+    <!-- <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-2">
+        <input type="text" pInputText placeholder="Search" class="w-8rem sm:w-auto" />
+        <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+      </div>
+    </ng-template> -->
+  </p-menubar>
+</div>

@@ -1,0 +1,39 @@
+<div class="grid grid-cols-2">
+  <div>
+    <p-galleria
+      [value]="galleryImages"
+      [showIndicators]="true"
+      [showThumbnails]="false"
+      [showItemNavigatorsOnHover]="false"
+      [showItemNavigators]="true"
+      [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{ 'max-width': '640px' }"
+    >
+      <ng-template pTemplate="item" let-item>
+        <img [src]="item.previewImageSrc" style="width: 100%; display: block" />
+      </ng-template>
+    </p-galleria>
+  </div>
+  <div>
+    <p-card [header]="dataBreeds.name" [style]="{ width: '360px' }">
+      <p>Origen: {{ dataBreeds?.origin }}</p>
+      <p>temperament: {{ dataBreeds?.temperament }}</p>
+      <p>life_span: {{ dataBreeds?.life_span }}</p>
+      <p>adaptability: {{ dataBreeds?.adaptability }}</p>
+      <p>affection_level: {{ dataBreeds?.affection_level }}</p>
+      <p>social_needs: {{ dataBreeds?.social_needs }}</p>
+      <ng-template pTemplate="footer">
+        <div class="flex gap-3 mt-1">
+          <p-button
+            pButton
+            pRipple
+            label="Get More Info"
+            class="w-full"
+            styleClass="w-full"
+            (onClick)="goToLink(dataBreeds?.name)"
+          />
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
